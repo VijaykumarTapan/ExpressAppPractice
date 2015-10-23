@@ -1,0 +1,21 @@
+MongoDB Queries
+
+show dbs = show databases
+show collections = Show collections in database
+use dbname = create or use dbname database for current session
+db.collectionname.find() = Show all items in collectionname collection
+db.collectionname.insert({"":"", "":""}) = Insert item into collection collectionname
+db.collectionname.drop() = Delection collection collectionname
+db.collectionname.update({"User" : "Vijay"},{"Posttitle":"titledata", "User":"Vijay"}{upsert:true}) = This will update the collectionname collection based on first parameter. In this case it will update the post made by the user Vijay with the data in the second parameter. If no post exists by a User named Vijay it will create a post instead because the third parameter upsert is set to true.
+db.collectionname.save({"":"", "":""}) : This will create a new entry if queried item doesnt exist. Unlike update there is no need to pass an upsert option.
+**Collections appear to be case sensitive. Using user instead of User shows no results when used with db.collectionname.find({"":""}) function.
+**Some important update options to be passed in as the third parameter are upsert and multi. Multi will effection all documents that meet the selection criteria. 
+
+MongoDB has many query operators for example And/Or Operators. Please refer to MongoDB documentation to see exact syntax and to read about the various different query operators.
+
+db.collectionname.remove() = Unlike drop this will remove all documents in collection but will not delete the indexes or the collection itself.
+
+db.collectionname.remove({"user":"alice"}) This will remove all documents with the user alice as one of its properties.
+
+db.collectionname.remove({"user":"alice"}, true) This will remove only the first documents with the user alice as one of its properties and leave the other documents even if they match the deletion criteria.
+
