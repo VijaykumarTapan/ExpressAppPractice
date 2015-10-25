@@ -2,12 +2,14 @@ var User = require('mongoose').model('User');
 
 exports.create = function (req, res, next) {
 
+	res.setHeader('Access-Control-Allow-Credentials', true);
 	var user = new User(req.body);
 
 	user.save(function (err) {
 		if (err) {
 			return next(err);
 		} else {
+			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.json(user);
 		}
 	});
@@ -15,10 +17,12 @@ exports.create = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 	User.find({}, function (err, users) {
+		res.setHeader('Access-Control-Allow-Origin', '*');
 		if (err) {
 			return next(err);
 		}
 		else {
+			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.json(users);
 		}
 	});
